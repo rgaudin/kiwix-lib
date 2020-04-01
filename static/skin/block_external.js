@@ -1,11 +1,11 @@
 var block_path = "/catch/external";
 // called only on external links
-function capture_event(e) { e.target.setAttribute("href", encodeURI(block_path + "?source=" + e.target.href)); }
+function capture_event(e) { e.currentTarget.setAttribute("href", encodeURI(block_path + "?source=" + e.currentTarget.href)); }
 
 // called on all link clicks. filters external and call capture_event
 function on_click_event(e) {
-  if ("target" in e && "href" in e.target) {
-    var href = e.target.href;
+  if ("currentTarget" in e && "href" in e.currentTarget) {
+    var href = e.currentTarget.href;
     if (window.location.pathname.indexOf(block_path) == 0) // already in catch page
       return;
     if (href.indexOf(window.location.origin) == 0)
